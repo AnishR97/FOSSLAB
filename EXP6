@@ -1,0 +1,82 @@
+Experiment 6
+---------------
+Version Control System (VCS) setup and usage using git
+
+1. INSTALLATION
+----------------
+sudo apt-get install git (Ubuntu)
+
+2. CONFIGURE USER
+------------------
+git config --global user.name "username"
+git config --global user.email "useremail"
+
+3. HELP
+--------
+git help <command name>
+
+4. CREATING A REPOSITORY
+------------------------
+1. Create a folder
+2. cd into the folder and type 'git init'
+3. Use the above local repository or create a repository on any sites such as github,bitbucket,gitlab etc
+
+5. ADDING CONTENTS TO THE REPOSITORY 
+-------------------------------------
+git add .         -->This adds all the files to the local repository or the changed files to the local repository
+git add <file>    -->To add a file to the local git repository
+
+6. COMMITTING THE DATA INTO A REPOSITORY
+-----------------------------------------
+git commit -m "Message "  --> Message should be a string indicative of the changes made
+
+7. ADDING A REMOTE
+---------------------
+git remote add origin <remote url> -->The git url obtained from the website
+
+8. PUSHING CHANGES TO THE REMOTE SERVER
+----------------------------------------
+git push origin <branch name> --> This command uploads the changed source code to the remote server
+
+9. COMPARING DIFFERENT REVISIONS
+--------------------------------
+1. git diff --> Shows the changes from the last commit and the uncommited changes
+2. git diff commit1 commit 2 --> Shows the difference between two commits
+
+10. REVERT
+------------
+git rever <commitid> --> Switches to that commit discarding the later changes
+git checkout <commitid> --> Switches to a previous point in the development
+
+11. CONFLICTS
+---------------
+In the case of conflicts, there can be many cases 
+1. You have uncommitted changes and you are trying to pull 
+   Solution --> First commit your changes and then pull 
+2. You are trying to push and you encounter an error
+   Solution --> First pull and then push
+3. You can't merge the current pull request
+   --> This is because the same file has different status at the local and remote repositories
+   Solution --> Change the conflicting file manually, then pull and later push 
+
+12. BRANCHING
+--------------
+git branch <branchname> -->Creates a new branch , branch will have content same as the master branch
+git checkout <branchname> --> Switches to new branch
+git -d <branchname> --> Delete a branch
+
+13. MERGING
+------------
+git merge <branch1> <branch2>
+
+14. CLONING
+---------------
+git clone <url> 
+
+15. LOG
+--------
+git log 
+
+16. STASH
+----------
+git stash --> Removes changes after the previous changes
