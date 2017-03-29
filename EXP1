@@ -1,0 +1,65 @@
+                                                FOSS LAB EXPERIMENT 1
+AIM
+Getting started with basic Linux Commands and directory structure, execute file, directory
+operations.
+CREATING FILES AND DIRECTORIES
+1. touch <filename> --> Creates a file
+2. mkdir <dirname> --> Creates a directory
+CURRENT WORKING DIRECTORY:-
+1. pwd --> Displays the current working directory
+CHANGE DIRECTORY:-
+1. cd <dirname> --> Changes the directory to the subdirectory of the current directory
+2. cd .. --> Changes the directory to the parent directory of the current directory
+3. cd ~ --> Changes the directory to the home directory of the current user
+4. cd / --> Changes the directory to the root directory of the current user
+5. cd ~<username> --> Changes the directory to the home directory of a different userVIEWING CONTENTS OF TEXT FILES
+1. cat <filename> --> Displays the text scroll off the screen
+2. cat <file1> <file2> --> Concatenates the contents of the two text files
+3. more <filename> --> Displays the file one scornful at a time
+4. less <filename> --> Similar but faster than the more command
+LISTING FILES AND DIRECTORIES:-
+1. ls --> Lists the files in the current directory
+2. ls -l --> Prevides a long listing of all the files
+3. ls -l -h --> Same as the above command but the file sizes will be in human readable
+form
+4. ls -F --> Marks all the executable with a * and all the directories with a /
+5. ls --color --> Shows a coloured listing of all the files
+6. ls -a --> Shows all the files in the present directory including the special dot files
+COPYING FILES AND DIRECTORIES:-
+1. cp <file1> <file2> --> Copies file 1 to file 2
+2. cp <file1> <dirname> --> Copies file1 to Directory <dirname>3.
+cp -r <dirname1> <dirname2> --> Copies dirname1 directory to directory dirname2
+RENAMING FILES AND DIRECTORIES:-
+1. mv <oldname> <newname> --> Renames file with old name to new name
+2. mv <olddir> <newdir> --> Renames directory with name olddir to newdir
+3. mv <filename> <dirname> --> Moves files with name as filename to directory
+dirname
+SOME USEFUL COMMANDS:-
+1. clear --> Clears the terminal screen
+2. locate <filename> --> Searches for a specified filename
+3. passwd --> Prompt to change the password of the current user
+4. whoami --> Displays the details of the current logged in user
+GETTING HELP:-
+1. man <commandname> --> Finds out what a command does
+2. man -f <commandname> --> One line summary of what the command does
+3. man -k <keyword> --> Searches for a command with a particular keywordIMPORTANT FILES IN LINUX:-
+1. /bin # Essential user command and binary files
+2. /boot # Static files of the boot loader
+3. /dev # Device files
+4. /etc # Host specific system configuration
+5. /home # User home directories
+6. /lib # Essential shared libraries and kernal modules
+7. /mnt # Mount point for devices
+8. /opt # Add on application software packages
+9. /sbin # System binary files
+10. /tmp # Temporary files
+11. /usr # User utilities and applications
+12. /var # Variable files
+13. /root # Home directory of the user
+EXECUTING FILES:-
+1. File execution in Linux :-
+2.
+cd to the directory which contains the file to be executed
+3. Type "chmod +x <name of the file>" which provides system permissions for the file to
+be executed
+4. Type "sh./<name of the file>" to execute the file
