@@ -1,0 +1,77 @@
+SOURCE CODE
+clear
+sum=0
+i="y"
+echo " Enter one no."
+read n1
+echo "Enter second no."
+read n2
+while [ $i = "y" ]
+do
+echo "1.Addition"
+echo "2.Subtraction"
+echo "3.Multiplication"
+echo "4.Division"
+echo "5.Modulus"
+echo "Enter your choice"
+read ch
+case $ch in
+1)sum=`expr $n1 + $n2`
+echo "Sum ="$sum;;
+2)sum= 'expr $n1 - $n2'
+echo "Diff ="$sum;;
+3)sum=`expr $n1 \* $n2`
+echo "Mul = "$sum;;
+4)sum=`expr $n1 / $n2`
+echo "Div = "$sum;;
+5)sum='expr $n1 % $n2'
+echo "Mod ="$sum;;
+*)echo "Invalid choice";;
+esac
+echo "Do u want to continue ?"
+read i
+if [ $i != "y" ]
+then
+exit
+fi
+done
+OUTPUT
+Enter one no.
+6
+Enter second no.
+7
+1.Addition2.Subtraction
+3.Multiplication
+4.Division
+Enter your choice
+1
+Sum =13
+Do u want to continue ?
+y
+1.Addition
+2.Subtraction
+3.Multiplication
+4.Division
+Enter your choice
+2
+Sub = -1
+Do u want to continue ?
+y
+1.Addition
+2.Subtraction
+3.Multiplication
+4.Division
+Enter your choice
+4
+Div = 0
+Do u want to continue ?
+y
+1.Addition
+2.Subtraction
+3.Multiplication
+4.Division
+Enter your choice
+3
+Mul = 42
+Do u want to continue ?
+n
