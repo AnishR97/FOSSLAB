@@ -1,0 +1,21 @@
+SOURCE CODE
+#!/bin/bash
+echo -e "User name: $USER (Login name: $LOGNAME)"
+echo -e "Current Shell: $SHELL"
+echo -e "Home Directory: $HOME"
+echo -e "Your O/s Type: $OSTYPE"
+echo -e "PATH: $PATH"
+echo -e "Current directory: `pwd`"
+echo -e "Currently Logged: $nouser user(s)"
+
+
+OUTPUT
+User name: ctse (Login name: ctse)
+Current Shell: /bin/bash
+Home Directory: /home/ctse
+Your O/s Type: linux-gnu
+PATH:
+/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/ja
+va/jdk/jdk1.8.0_73/bin
+Current directory: /home/ctse/anish
+Currently Logged: user(s)
