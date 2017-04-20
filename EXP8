@@ -1,0 +1,149 @@
+PERL
+
+MATCHTEXT--------------------------------------
+
+#!/usr/bin/perl
+
+$text = "helloworld";
+if ($text =~ /angel/){
+   print "First time is matching\n";
+}else{
+   print "First time is not matching\n";
+}
+
+$text = "angel";
+if ($text =~ /angel/){
+   print "Second time is matching\n";
+}else{
+   print "Second time is not matching\n";
+}
+
+anish@anish-dell:~$ perl perl.pl
+First time is not matching
+Second time is matching
+
+SUBSTITUITION----------------------------------
+
+#!/user/bin/perl
+
+$string = "The cat sat on the mat";
+$string =~ s/cat/dog/;
+
+print "$string\n";
+
+anish@anish-dell:~$ perl perl.pl
+The dog sat on the mat
+
+TRANSLATION------------------------------------
+
+#!/user/bin/perl
+
+$string = 'The cat sat on the mat';
+$string =~ tr/a/o/;
+
+print "$string\n";
+
+anish@anish-dell:~$ perl perl.pl
+The cot sot on the mot
+
+
+
+
+AWK
+
+MARKS.TXT
+
+1) Amit     Physics   80
+2) Rahul    Maths     90
+3) Shyam    Biology   87
+4) Kedar    English   85
+5) Hari     History   8
+
+
+You can instruct AWK to print only certain columns from the input field. The following example demonstrates this −
+
+anish@anish-dell:~/Desktop$ awk '{print $3 "\t" $4}' marks.txt
+Physics	80
+Maths	90
+Biology	87
+English	85
+History	89
+anish@anish-dell:~/Desktop$ awk '{print $2 "\t" $4}' marks.txt
+Amit	80
+Rahul	90
+Shyam	87
+Kedar	85
+Hari	89
+anish@anish-dell:~/Desktop$ awk '{print $2 "\t" $3 "\t" $4}' marks.txt
+Amit	Physics	80
+Rahul	Maths	90
+Shyam	Biology	87
+Kedar	English	85
+Hari	History	89
+
+By default, AWK prints all the lines that match pattern.
+Example
+
+anish@anish-dell:~/Desktop$ awk '/a/ {print $1}' marks.txt
+2)
+3)
+4)
+5)
+anish@anish-dell:~/Desktop$ awk '/a/ {print $2}' marks.txt
+Rahul
+Shyam
+Kedar
+Hari
+anish@anish-dell:~/Desktop$ awk '/R/ {print $2}' marks.txt
+Rahul
+anish@anish-dell:~/Desktop$ awk '/R/ {print $0}' marks.txt
+2) Rahul    Maths     90
+anish@anish-dell:~/Desktop$ awk '/R/ {print $2}' marks.txT
+awk: cannot open marks.txT (No such file or directory)
+anish@anish-dell:~/Desktop$ CLEAR
+CLEAR: command not found
+anish@anish-dell:~/Desktop$ clear
+
+anish@anish-dell:~/Desktop$ awk '/R/ {print $2}' marks.txt
+Rahul
+anish@anish-dell:~/Desktop$ awk '/a/ {print $2}' marks.txt
+Rahul
+Shyam
+Kedar
+Hari
+anish@anish-dell:~/Desktop$ awk '/R/ {print $0}' marks.txt
+2) Rahul    Maths     90
+anish@anish-dell:~/Desktop$ awk '/R/ {print $1}' marks.txt
+2)
+anish@anish-dell:~/Desktop$ awk '/R/ {print $3}' marks.txt
+Maths
+anish@anish-dell:~/Desktop$ awk '/R/ {print $4}' marks.txt
+90
+anish@anish-dell:~/Desktop$ awk '/k/ {print $4}' marks.txt
+anish@anish-dell:~/Desktop$ awk '/k/ {print $4}' marks.txt
+anish@anish-dell:~/Desktop$ awk '/K/ {print $4}' marks.txt
+85
+anish@anish-dell:~/Desktop$ awk '/K/ {print $0}' marks.txt
+4) Kedar    English   85
+anish@anish-dell:~/Desktop$ awk '/a/ {print $0}' marks.txt
+2) Rahul    Maths     90
+3) Shyam    Biology   87
+4) Kedar    English   85
+5) Hari     History   89
+anish@anish-dell:~/Desktop$ awk '/A/ {print $0}' marks.txt
+1) Amit     Physics   80
+anish@anish-dell:~/Desktop$ awk '/a/ {print $0}' marks.txt
+
+
+
+When a pattern match succeeds, AWK prints the entire record by default. But you can instruct AWK to print only certain fields. For instance, the following example prints the third and fourth field when a pattern match succeeds.
+Example
+
+anish@anish-dell:~/Desktop$ awk '/K/ {print $3 "\t" $4}' marks.txt
+English	85
+anish@anish-dell:~/Desktop$ awk '/A/ {print $3 "\t" $4}' marks.txt
+Physics	80
+anish@anish-dell:~/Desktop$ awk '/A/ {print $1 "\t" $3}' marks.txt
+1)	Physics
+anish@anish-dell:~/Desktop$ awk '/A/ {print $0 "\t" $3}' marks.txt
+1) Amit     Physics   80	Physics
