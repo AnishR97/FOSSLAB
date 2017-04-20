@@ -1,0 +1,260 @@
+Experiment 10
+
+op.py---------------------------------------------------------------
+#This code is used to work on with the evaluation of the given arithmetic expression
+
+
+
+#!/usr/bin/python
+import stacalc as st
+class stack:
+	def __init__(self):
+		self.items=[]
+	def push(self,a):
+		self.items.append(a)
+	def pop(self):
+		return self.items.pop()
+	def isempty(self):
+		return len(self.items)==0
+	def top(self):
+		return self.items[-1]
+numeric=stack()
+operator=stack()
+precedence={'*':1,'/':1,'+':2,'-':2,'^':0}
+oper=['*','/','+','-','^']
+
+def find():
+	a=numeric.pop()
+	b=numeric.pop()
+	c=operator.pop()
+	if c=='*':
+		numeric.push(a*b)
+	elif c=='/':
+		numeric.push(b/a)
+	elif c=='+':
+		numeric.push(a+b)
+	elif c=='-':
+		numeric.push(b-a)
+	elif c=='^':
+		numeric.push(b**a)
+
+def calc(expr):
+	num=""
+	i=0
+	count=0
+	for i in expr:
+		if i=='(':
+			count+=1
+		if count:
+			num+=i
+			if i==')':
+				count-=1
+			if count==0:
+				x=st.calc(num)
+				numeric.push(x)
+				num=""
+		else:
+			if i.isdigit() or i=='.':
+				num+=i	
+			elif i in oper:
+				if num=='':
+					numeric.push(0)
+				else:
+					numeric.push(eval(num))
+				if i=='-':
+				
+					num='-'
+					i='+'
+				else:
+					num=""
+				if operator.isempty() or precedence[i]<precedence[operator.top()]:
+					operator.push(i)
+				elif precedence[i]>=precedence[operator.top()]:
+					find()
+					operator.push(i)
+	
+				elif i==" ":
+					pass
+			
+	if num:
+		numeric.push(eval(num))
+	while not operator.isempty():
+		find()
+	return numeric.pop()
+
+scicalc.py------------------------------------------------------------
+
+#This code looks after the GUI part
+
+#To evaluate the given expression, it calls the "calc" function in the "op" file
+
+#!usr/bin/python
+import op 
+from gi.repository import Gtk
+w=Gtk.Window()
+table=Gtk.Table(5,5,True)
+tb=Gtk.Entry()
+class Window:
+	def __init__(self):
+		self.turn=False
+	def equalclicked(self,widget):
+		m=tb.get_text()
+		m=str(op.calc(m))
+		tb.set_text(m)
+		self.turn=True
+	def buttonclicked(self,widget):
+		if self.turn==True:
+			tb.set_text("")
+			self.turn=False
+		m=tb.get_text()
+		m=m+widget._value
+		tb.set_text(m)
+	def clear(self,widget):
+		tb.set_text("")
+		self.turn=False
+	def back(self,widget):
+		m=tb.get_text()
+		m=m[:-1]
+		tb.set_text(m)
+x=Window()
+
+zero=Gtk.Button(label='0')
+one=Gtk.Button(label='1')
+two=Gtk.Button(label='2')
+three=Gtk.Button(label='3')
+four=Gtk.Button(label='4')
+five=Gtk.Button(label='5')
+six=Gtk.Button(label='6')
+seven=Gtk.Button(label='7')
+eight=Gtk.Button(label='8')
+nine=Gtk.Button(label='9')
+add=Gtk.Button(label='+')
+sub=Gtk.Button(label='-')
+mul=Gtk.Button(label='X')
+div=Gtk.Button(label='/')
+equ=Gtk.Button(label='=')
+clear=Gtk.Button(label='C')
+neg=Gtk.Button(label='+/-')
+opbr=Gtk.Button(label='(')
+exp=Gtk.Button(label='^')
+clbr=Gtk.Button(label=')')
+point=Gtk.Button(label='.')
+back=Gtk.Button(label='<-')
+buttons=[zero,one,two,three,four,five,six,seven,eight,nine]
+for i in range(len(buttons)):
+	buttons[i]._value=str(i)
+nine._value='9'
+exp._value='^'
+add._value='+'
+sub._value='-'
+mul._value='*'
+div._value='/'
+equ._value='='
+clear._value='c'
+neg._value='-'
+opbr._value='('
+clbr._value=')'
+point._value='.'
+buttonlist=[zero,one,two,three,four,five,six,seven,eight,nine,point,add,sub,mul,div,opbr,clbr,neg,exp]
+for button in buttonlist:
+	button.connect("clicked",x.buttonclicked)
+equ.connect("clicked",x.equalclicked)
+back.connect("clicked",x.back)
+clear.connect("clicked",x.clear)
+table.attach(tb,0,3,0,1)
+table.attach(exp,3,4,0,1)
+table.attach(clear,4,5,0,1)
+table.attach(seven,0,1,1,2)
+table.attach(eight,1,2,1,2)
+table.attach(nine,2,3,1,2)
+table.attach(four,0,1,2,3)
+table.attach(five,1,2,2,3)
+table.attach(six,2,3,2,3)
+table.attach(one,0,1,3,4)
+table.attach(two,1,2,3,4)
+table.attach(three,2,3,3,4)
+table.attach(zero,0,1,4,5)
+table.attach(point,1,2,4,5)
+table.attach(add,3,4,1,2)
+table.attach(sub,3,4,2,3)
+table.attach(mul,3,4,3,4)
+table.attach(div,3,4,4,5)
+table.attach(equ,2,3,4,5)
+table.attach(neg,4,5,2,3)
+table.attach(opbr,4,5,3,4)
+table.attach(clbr,4,5,4,5)
+table.attach(back,4,5,1,2)
+w.add(table)
+w.show_all()
+w.connect("delete-event",Gtk.main_quit)		
+Gtk.main()
+
+stacalc.py------------------------------------------------------
+
+#This code is to evaluate the expression if it containd brackets"()"
+
+#!/usr/bin/python
+class stack:
+	def __init__(self):
+		self.items=[]
+	def push(self,a):
+		self.items.append(a)
+	def pop(self):
+		return self.items.pop()
+
+def evalu(a,s):
+	b=['0','1','2','3','4','5','6','7','8','9','.']
+	if a in b:
+		s=s+a
+		return s
+	elif a==')':
+		if s!="":
+			x.push(eval(s))
+		m=find()
+		x.push(m)
+		return ""
+	elif a=='-':
+		if s!="":
+			x.push(eval(s))
+			x.push('-')
+			return ""
+		else:
+			s=s+"-"
+			return s
+	else:
+		if s!="":
+                	x.push(eval(s))
+		x.push(a)
+		return ""	
+def calc(expr):
+	
+	i=0
+	s=""
+	while i<len(expr):
+		s=evalu(expr[i],s)
+		i+=1
+	if len(x.items):
+		return x.pop()
+	
+def find():
+	a=x.pop()
+	b=x.pop()
+	c=x.pop()
+	d=x.pop()
+	if b=="+":
+		f=a+c
+	if b=="-":
+		f=c-a
+	if b=="*":
+		f=a*c
+	if b=="/":
+		f=c/a
+	if b=='^':
+		f=c**a
+	return f
+x=stack()
+
+runCalc.sh----------------------------------------------------
+
+#!/bin/bash
+python scicalc.py
